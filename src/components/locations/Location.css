@@ -1,0 +1,9 @@
+.location {
+  padding: 1rem;
+  margin: 1rem;
+  border: dotted blue 2px;
+}
+
+.locations {
+  display: flex;
+}

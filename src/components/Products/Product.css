@@ -1,0 +1,11 @@
+.products {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product {
+  margin: 1rem;
+  padding: 1rem;
+  border: dashed red 2px;
+  width: 12rem;
+}

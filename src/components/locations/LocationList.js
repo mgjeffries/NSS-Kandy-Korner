@@ -5,7 +5,7 @@ import { Location } from "./Location"
 export const LocationList = () => {
   const { locations, getLocations } = useContext(LocationContext)
 
-  useEffect(getLocations, [])
+  useEffect( () => {getLocations()}, [])
 
   return (
     <div className="locations">

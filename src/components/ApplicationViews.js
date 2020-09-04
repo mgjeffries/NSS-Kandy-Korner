@@ -23,8 +23,9 @@ export const ApplicationViews = (props) => {
           <Route exact path="/employees" render={
             props => <EmployeeList {...props} />
           }/>
-          <Route exact path="/employees/create">
-            <EmployeeForm/>
+          <Route exact path="/employees/create" render={
+            props => <EmployeeForm {...props} />
+          }>
           </Route>
         </LocationPovider>
         

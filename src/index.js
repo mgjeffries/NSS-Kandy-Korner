@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { KandyKorner } from './components/KandyKorner';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <KandyKorner />
+    <Router>
+      <KandyKorner />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

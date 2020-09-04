@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { EmployeeContext } from "./EmployeeProvider"
 import { Employee } from "./Employee"
 
-export const EmployeeList = () => {
+export const EmployeeList = (props) => {
   const { employees, getEmployees } = useContext(EmployeeContext)
 
 
@@ -11,10 +11,15 @@ export const EmployeeList = () => {
   }, [])
 
   return (
-    <div className="employees">
-      {
-        employees.map( p => <Employee key={p.id} employee={p}/>)
-      }
-    </div>
+    <>
+      <button onClick={() => props.history.push("/employees/create")}>
+        Add employee
+      </button>
+      <div className="employees">
+        {
+          employees.map( e => <Employee key={e.id} employee={e}/>)
+        }
+      </div>
+    </>
   )
 }

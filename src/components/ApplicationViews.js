@@ -12,8 +12,9 @@ export const ApplicationViews = (props) => {
   return (
     <>
       <EmployeeProvider>
-        <Route exact path="/">
-          <EmployeeList />
+        <Route exact path="/" render={
+          props => <EmployeeList {...props} />
+        }>
         </Route>
       </EmployeeProvider>
 

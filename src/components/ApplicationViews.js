@@ -11,8 +11,14 @@ import { EmployeeList } from "./employees/EmployeeList"
 export const ApplicationViews = (props) => {
   return (
     <>
+      <LocationPovider>
+        <Route exact path="/">
+          <LocationList />
+        </Route>
+      </LocationPovider>
+      
       <EmployeeProvider>
-        <Route exact path="/" render={
+        <Route exact path="/employees" render={
           props => <EmployeeList {...props} />
         }>
         </Route>

@@ -16,6 +16,9 @@ export const EmployeeForm = (props) => {
   */
   const name = useRef(null)
   const location = useRef(null)
+  const rate = useRef(null)
+  const isFullTime = useRef(null)
+  const isManager = useRef(null)
 
   /*
       Get animal state and location state on initialization.
@@ -35,10 +38,13 @@ export const EmployeeForm = (props) => {
 
       if (locationId === 0) {
           window.alert("Please select a location")
-      } else {
+      } else {          
           addEmployee({
               name: name.current.value,
-              locationId
+              hourlyRate: parseInt(rate.current.value),
+              locationId,
+              isFullTime: isFullTime.current.checked,
+              isManager: isManager.current.checked
           })
           .then(() => props.history.push("/employees"))
       }
@@ -64,6 +70,24 @@ export const EmployeeForm = (props) => {
                           </option>
                       ))}
                   </select>
+              </div>
+          </fieldset>
+          <fieldset>
+              <div className="form-group">
+                  <label htmlFor="employeeIsFullTime">Full Time: </label>
+                  <input type="checkbox" id="employeeIsFullTime" ref={isFullTime} required  className="form-control" />
+              </div>
+          </fieldset>
+          <fieldset>
+              <div className="form-group">
+                  <label htmlFor="employeeIsManager">Manager: </label>
+                  <input type="checkbox" id="employeeIsManager" ref={isManager} required  className="form-control" />
+              </div>
+          </fieldset>
+          <fieldset>
+              <div className="form-group">
+                  <label htmlFor="employeeRate">Employee rate: </label>
+                  <input type="number" id="employeeRate" ref={rate} required autoFocus className="form-control" placeholder="15" />
               </div>
           </fieldset>
           <button type="submit"

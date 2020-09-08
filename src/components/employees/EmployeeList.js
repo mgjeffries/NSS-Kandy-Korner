@@ -5,12 +5,10 @@ import { LocationContext } from "../locations/LocationProvider"
 
 export const EmployeeList = (props) => {
   const { employees, getEmployees } = useContext(EmployeeContext)
-  const { locations, getLocations } = useContext(LocationContext)
 
 
   useEffect( () => {
     getEmployees()
-    getLocations()
   }, [])
 
   return (
@@ -20,10 +18,7 @@ export const EmployeeList = (props) => {
       </button>
       <div className="employees">
         {
-          employees.map( e => {
-            const location = locations.find(location => e.locationId === location.id) || {}
-            return <Employee key={e.id} employee={e} location={location}/>
-        })
+          employees.map( e => <Employee key={e.id} employee={e} />)
         }
       </div>
     </>

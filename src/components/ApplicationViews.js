@@ -5,6 +5,9 @@ import { Route } from "react-router-dom"
 import { LocationList } from "./locations/LocationList"
 import { ProductList } from "./Products/ProductList"
 import { ProductTypeProvider } from "./productTypes/ProductTypeProvider"
+import { EmployeeProvider } from "./employees/EmployeeProvider"
+import { EmployeeList } from "./employees/EmployeeList"
+import { EmployeeForm } from "./employees/EmployeeForm"
 
 export const ApplicationViews = (props) => {
   return (
@@ -13,6 +16,22 @@ export const ApplicationViews = (props) => {
         <Route exact path="/">
           <LocationList />
         </Route>
+      </LocationPovider>
+      
+      <EmployeeProvider>
+        <LocationPovider>
+          <Route exact path="/employees" render={
+            props => <EmployeeList {...props} />
+          }/>
+          <Route exact path="/employees/create" render={
+            props => <EmployeeForm {...props} />
+          }>
+          </Route>
+        </LocationPovider>
+        
+      </EmployeeProvider>
+
+      <LocationPovider>
         <Route exact path="/locations">
           <LocationList />
         </Route>

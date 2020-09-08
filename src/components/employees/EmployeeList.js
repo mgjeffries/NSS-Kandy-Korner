@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { EmployeeContext } from "./EmployeeProvider"
 import { Employee } from "./Employee"
+import { LocationContext } from "../locations/LocationProvider"
 
 export const EmployeeList = (props) => {
   const { employees, getEmployees } = useContext(EmployeeContext)
@@ -17,7 +18,7 @@ export const EmployeeList = (props) => {
       </button>
       <div className="employees">
         {
-          employees.map( e => <Employee key={e.id} employee={e}/>)
+          employees.map( e => <Employee key={e.id} employee={e} />)
         }
       </div>
     </>

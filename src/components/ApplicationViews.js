@@ -8,6 +8,7 @@ import { ProductTypeProvider } from "./productTypes/ProductTypeProvider"
 import { EmployeeProvider } from "./employees/EmployeeProvider"
 import { EmployeeList } from "./employees/EmployeeList"
 import { EmployeeForm } from "./employees/EmployeeForm"
+import { Logout } from "./auth/Logout"
 
 export const ApplicationViews = (props) => {
   return (
@@ -44,6 +45,10 @@ export const ApplicationViews = (props) => {
           </Route>
         </ProductTypeProvider>
       </ProductProvider>
+
+      <Route path="/logout" render={
+        props => <Logout {...props} />
+      }/>
     </>
   )
 }

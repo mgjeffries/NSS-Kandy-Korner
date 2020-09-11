@@ -1,0 +1,11 @@
+.orders {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.order {
+  margin: 1rem;
+  padding: 1rem;
+  border: dashed greenyellow 2px;
+  width: 12rem;
+}

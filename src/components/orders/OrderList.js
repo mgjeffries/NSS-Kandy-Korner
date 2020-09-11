@@ -11,41 +11,33 @@ export const OrderList = () => {
   const [ orderedProducts, setOrderedProducts] = useState([])
   const [ cart, setCart] = useState([])
 
+  const isInCart = (order) => {
+    return cart.some( p => p.id === order.productId)
+  }
 
-  useEffect( () => {
-    getProducts()
-    getProductTypes()
-    getOrders()
-  }, [])
+  const addToCartQuantity = (order) => {
+    cart.forEach( (product) => {
+      if(product.id===order.productId){
+        product.quantity++
+      }
+    })
+  }
 
-  useEffect( () => {
-    createOrderedProducts()
-  }, [orders])
+  const calculateLinePrices = () => {
+    cart.forEach(product => {
+      product.linePrice = product.quantity * product.price
+    })
+  }
 
-  const createOrderedProducts = () => {
 
-    const isInCart = (order) => {
-      return cart.some( p => p.id === order.productId)
-    }
-
-    const addToCartQuantity = (order) => {
-      cart.forEach( (product) => {
-        if(product.id===order.productId){
-          product.quantity++
-        }
-      })
-    }
-
-    const calculateLinePrices = () => {
-      cart.forEach(product => {
-        product.linePrice = product.quantity * product.price
-      })
-    }
-    
+  const createCart = () => {
+    setCart([])
 
     const currentuser = parseInt(localStorage.getItem("kandy_customer"))
+
     const userOrders = orders.filter(order => {
       return order.customerId === currentuser})
+    
     userOrders.forEach(order => {
       if (isInCart(order)) {
         addToCartQuantity(order)
@@ -60,6 +52,16 @@ export const OrderList = () => {
     calculateLinePrices()
     setOrderedProducts(cart)
   }
+
+  useEffect( () => {
+    getProducts()
+    getProductTypes()
+    getOrders()
+  }, [])
+
+  useEffect( () => {
+    createCart()
+  }, [orders])
 
   return <div className="products">
       {

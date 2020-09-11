@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import "./Product.css"
-import { OrderContext } from "../OrderProvider"
+import { OrderContext } from "../orders/OrderProvider"
 
 export const Product = ({ product, productType }) => {
   const { addOrder } = useContext(OrderContext)

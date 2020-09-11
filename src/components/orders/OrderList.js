@@ -20,7 +20,6 @@ export const OrderList = () => {
 
   useEffect( () => {
     createOrderedProducts()
-    calculateTotal()
   }, [orders])
 
   const createOrderedProducts = () => {
@@ -58,6 +57,7 @@ export const OrderList = () => {
       }
     });
 
+    calculateLinePrices()
     setOrderedProducts(cart)
   }
 
@@ -68,9 +68,6 @@ export const OrderList = () => {
         return <Order key={p.id} product={p} productType={productType}/>
       })
       }
-      <div className="order__total">
-        Total Price: {total}
-        </div>
     </div>
   
 }

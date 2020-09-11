@@ -16,17 +16,22 @@ export const OrderList = () => {
   }
 
   const addToCartQuantity = (order) => {
-    cart.forEach( (product) => {
+    //TODO: why are these shallow copies of the cart breaking the app? I suspect that I have an incomplete understanding of the useState hook.
+    const cartCopy = cart.slice()
+    cart.forEach( (product, index) => {
       if(product.id===order.productId){
-        product.quantity++
+        cartCopy[index].quantity++
       }
     })
+    setCart(cartCopy)
   }
 
   const calculateLinePrices = () => {
-    cart.forEach(product => {
-      product.linePrice = product.quantity * product.price
+    const cartCopy = cart.slice()
+    cart.forEach((product, index) => {
+      cartCopy[index].linePrice = product.quantity * product.price
     })
+    setCart(cartCopy)
   }
 
 
@@ -45,7 +50,9 @@ export const OrderList = () => {
       else {
         const product = products.find(product => product.id === order.productId)
         product.quantity = 1
-        cart.push(product)
+        const cartCopy = cart.slice()
+        cartCopy.push(product)
+        setCart(cartCopy)
       }
     });
 

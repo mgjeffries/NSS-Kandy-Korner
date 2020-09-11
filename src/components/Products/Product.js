@@ -15,7 +15,7 @@ export const Product = ({ product, productType }) => {
       () => {
         const order = {
           productId: product.id,
-          customerId: parseInt(localStorage.getItem("kennel_customer"))
+          customerId: parseInt(localStorage.getItem("kandy_customer"))
         }
         addOrder(order)
       }

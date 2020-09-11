@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { ProductContext } from "../Products/ProductProvider"
 import { ProductTypeContext } from "../productTypes/ProductTypeProvider"
 import { OrderContext } from "./OrderProvider"
+import "./Orders.css"
 
 export const OrderList = () => {
   const { products, getProducts } = useContext(ProductContext)
@@ -18,21 +19,31 @@ export const OrderList = () => {
   }, [])
 
   useEffect( () => {
-    createOrderTotal()
+    createOrderedProducts()
+    calculateTotal()
   }, [orders])
 
-  const createOrderTotal = () => {
+  const createOrderedProducts = () => {
+
     const isInCart = (order) => {
       return cart.some( p => p.id === order.productId)
     }
+
     const addToCartQuantity = (order) => {
-      cart.forEach( (product, index ) => {
+      cart.forEach( (product) => {
         if(product.id===order.productId){
-          cart[index].quantity++
+          product.quantity++
         }
       })
     }
+
+    const calculateLinePrices = () => {
+      cart.forEach(product => {
+        product.linePrice = product.quantity * product.price
+      })
+    }
     
+
     const currentuser = parseInt(localStorage.getItem("kandy_customer"))
     const userOrders = orders.filter(order => {
       return order.customerId === currentuser})
@@ -57,15 +68,19 @@ export const OrderList = () => {
         return <Order key={p.id} product={p} productType={productType}/>
       })
       }
+      <div className="order__total">
+        Total Price: {total}
+        </div>
     </div>
   
 }
 
 const Order = ({ product, productType }) => {
   return <div className="order">
-    <div className="product__name">{product.name}</div>
-    <div className="product__type">Product Type: {productType.name}</div>
-    <div className="product__price">${product.price}</div>
+    <div className="order__name">{product.name}</div>
+    <div className="order__type">Product Type: {productType.name}</div>
+    <div className="order__price">${product.price}</div>
     <div className="order_quantity">Quantity ordered: {product.quantity}</div>
+    <div className="order_linePrice">Line Price: {product.linePrice}</div>
   </div>
 }

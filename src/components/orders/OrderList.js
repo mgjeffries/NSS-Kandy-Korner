@@ -3,6 +3,7 @@ import { ProductContext } from "../Products/ProductProvider"
 import { ProductTypeContext } from "../productTypes/ProductTypeProvider"
 import { OrderContext } from "./OrderProvider"
 import "./Orders.css"
+import { Order } from "./Order"
 
 export const OrderList = () => {
   const { products, getProducts } = useContext(ProductContext)
@@ -83,12 +84,3 @@ export const OrderList = () => {
   
 }
 
-const Order = ({ product, productType }) => {
-  return <div className="order">
-    <div className="order__name">{product.name}</div>
-    <div className="order__type">Product Type: {productType.name}</div>
-    <div className="order__price">${product.price}</div>
-    <div className="order_quantity">Quantity ordered: {product.quantity}</div>
-    <div className="order_linePrice">Line Price: {product.linePrice}</div>
-  </div>
-}

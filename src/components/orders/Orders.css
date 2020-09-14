@@ -9,3 +9,11 @@
   border: dashed greenyellow 2px;
   width: 12rem;
 }
+
+.order__total {
+  margin: 1rem;
+  padding: 1rem;
+  border: solid greenyellow 2px;
+  background-color: gold;
+  width: 12rem;
+}

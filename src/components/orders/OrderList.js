@@ -9,6 +9,7 @@ export const OrderList = () => {
   const { productTypes, getProductTypes } = useContext(ProductTypeContext)
   const { orders, getOrders } = useContext(OrderContext)
   const [ orderedProducts, setOrderedProducts] = useState([])
+  const [ total, setTotal ] = useState(0)
 
   const addToCartQuantity = (order, cart) => {
     cart.forEach( (product) => {
@@ -32,6 +33,12 @@ export const OrderList = () => {
     return cart
   } 
 
+  const calculateTotal = (cart) => {
+    let sum = 0
+    cart.forEach(p => sum += p.linePrice)
+    setTotal(sum)
+  }
+
   const createCart = () => {
     let cart = []
 
@@ -50,6 +57,7 @@ export const OrderList = () => {
     });
 
     calculateLinePrices(cart)
+    calculateTotal(cart)
     setOrderedProducts(cart)
   }
 
@@ -70,6 +78,7 @@ export const OrderList = () => {
         return <Order key={p.id} product={p} productType={productType}/>
       })
       }
+      <div className="order__total">Order total: {total}</div>
     </div>
   
 }
